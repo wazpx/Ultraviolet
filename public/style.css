@@ -1,52 +1,104 @@
-function searchGoogle() {
-  const query = document.getElementById('search-input').value;
-  openSite(`https://www.google.com/search?q=${encodeURIComponent(query)}`);
+body {
+  margin: 0;
+  background: linear-gradient(to bottom, #000, #330066);
+  color: white;
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
+  overflow: hidden;
 }
 
-function openSite(url) {
-  document.getElementById('home-screen').style.display = 'none';
-  document.getElementById('browser-area').style.display = 'block';
-  createTab(url);
+.topbar {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #111;
 }
 
-function createTab(url) {
-  const tabs = document.getElementById('tabs');
-
-  const tab = document.createElement('div');
-  tab.className = 'tab';
-  tab.textContent = url.replace('https://', '').replace('www.', '').split('.')[0];
-  tab.onclick = () => {
-    document.getElementById('browser-frame').src = url;
-    setActiveTab(tab);
-  };
-  
-  tabs.appendChild(tab);
-  tab.click(); // auto switch to new tab
+#tabs {
+  flex-grow: 1;
+  display: flex;
 }
 
-function setActiveTab(tab) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  tab.classList.add('active');
+.tab {
+  background: #333;
+  margin: 0 5px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-function goBack() {
-  const frame = document.getElementById('browser-frame');
-  frame.contentWindow.history.back();
+.tab.active {
+  background: #555;
 }
 
-function goHome() {
-  document.getElementById('browser-area').style.display = 'none';
-  document.getElementById('home-screen').style.display = 'flex';
+.top-icons button, .nav-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-function openSettings() {
-  alert("Settings are coming soon!");
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
 }
 
-function toggleFullScreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
+.search-area {
+  display: flex;
+  align-items: center;
+  background: #222;
+  border-radius: 30px;
+  padding: 10px 20px;
+  width: 50%;
+  margin-bottom: 50px;
+}
+
+.search-icon {
+  width: 24px;
+  margin-right: 10px;
+}
+
+.search-area input {
+  border: none;
+  background: transparent;
+  color: white;
+  width: 100%;
+  font-size: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  width: 80%;
+}
+
+.tile {
+  background: #222;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.tile img {
+  width: 60px;
+}
+
+#browser-area {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  width: 100%;
+}
+
+#browser-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
