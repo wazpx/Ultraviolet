@@ -1,21 +1,22 @@
 const tabBar = document.getElementById("tabBar");
 const tabContent = document.getElementById("tabContent");
-const newTabBtn = document.getElementById("newTabBtn");
+const newTabBtn = document.getElementById("tabsBtn");
 const searchInput = document.getElementById("search");
 const searchBtn = document.getElementById("searchBtn");
-const tilesContainer = document.getElementById("tiles");
-const home = document.getElementById("home");
 const homeBtn = document.getElementById("homeBtn");
 const fullscreenBtn = document.getElementById("fullscreenBtn");
+const home = document.getElementById("home");
 
 let tabId = 0;
 const tabs = [];
 
+// Create a new tab
 function createTab(url = "/") {
-  home.style.display = "none";
+  home.style.display = "none"; // Hide homepage
+  tabBar.style.display = "flex"; // Show tab bar when tab opened
 
   const id = tabId++;
-  const title = url.includes("google") ? "Google" : url;
+  const title = url === "/" ? "Home" : url;
 
   const tabButton = document.createElement("button");
   tabButton.innerText = title.length > 15 ? title.slice(0, 15) + "…" : title;
@@ -31,28 +32,33 @@ function createTab(url = "/") {
   };
 
   tabButton.appendChild(closeBtn);
-  tabBar.insertBefore(tabButton, newTabBtn);
+  tabBar.appendChild(tabButton);
 
   const iframe = document.createElement("iframe");
   iframe.src = url === "/" ? "index.html" : `/uv/service/${encodeURIComponent(url)}`;
   iframe.dataset.tabId = id;
   iframe.style.display = "none";
+  iframe.style.width = "100%";
+  iframe.style.height = "calc(100vh - 5rem)";
+  iframe.style.border = "none";
   tabContent.appendChild(iframe);
 
   tabs.push({ id, button: tabButton, iframe });
   setActiveTab(id);
 }
 
+// Set active tab
 function setActiveTab(id) {
-  tabs.forEach((tab) => {
+  tabs.forEach(tab => {
     const isActive = tab.id === id;
     tab.button.classList.toggle("active", isActive);
     tab.iframe.style.display = isActive ? "block" : "none";
   });
 }
 
+// Close a tab
 function closeTab(id) {
-  const index = tabs.findIndex((t) => t.id === id);
+  const index = tabs.findIndex(t => t.id === id);
   if (index === -1) return;
 
   const [removed] = tabs.splice(index, 1);
@@ -62,18 +68,80 @@ function closeTab(id) {
   if (tabs.length) {
     setActiveTab(tabs[Math.max(index - 1, 0)].id);
   } else {
-    home.style.display = "block";
+    home.style.display = "flex"; // Show homepage if no tabs left
+    tabBar.style.display = "none";
   }
 }
 
-newTabBtn.onclick = () => createTab("/");
-
-homeBtn.onclick = () => {
-  tabContent.innerHTML = "";
-  tabBar.innerHTML = "";
-  home.style.display = "block";
+// Add new tab on clicking tabsBtn
+newTabBtn.onclick = () => {
+  const url = prompt("Enter URL:");
+  if (url) {
+    createTab(url);
+  }
 };
 
+// Handle homepage shortcuts
+let tiles = JSON.parse(localStorage.getItem("tiles")) || [];
+
+function renderTiles() {
+  home.innerHTML = "";
+  tiles.forEach((tile) => {
+    const div = document.createElement("div");
+    div.className = "shortcutBig";
+    div.innerHTML = `<img src="${tile.icon}" alt="${tile.name}">`;
+    div.onclick = () => createTab(tile.url);
+    home.appendChild(div);
+  });
+}
+
+// Add new homepage shortcut
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey && e.key === "k") { // Ctrl + K to add tile
+    e.preventDefault();
+    const name = prompt("Site Name?");
+    const url = prompt("Site URL?");
+    const icon = prompt("Icon URL?");
+    if (!name || !url || !icon) return;
+    tiles.push({ name, url, icon });
+    localStorage.setItem("tiles", JSON.stringify(tiles));
+    renderTiles();
+  }
+});
+
+// Search when pressing Enter
+searchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    searchGoogle();
+  }
+});
+
+// Search when clicking search icon
+searchBtn.onclick = () => {
+  searchGoogle();
+};
+
+// Google search function
+function searchGoogle() {
+  const query = searchInput.value.trim();
+  if (!query) return;
+  let url = query;
+  if (!query.startsWith("http")) {
+    url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+  }
+  createTab(url);
+  searchInput.value = "";
+}
+
+// Go home
+homeBtn.onclick = () => {
+  home.style.display = "flex";
+  tabBar.style.display = "none";
+  tabContent.innerHTML = "";
+  tabs.length = 0;
+};
+
+// Fullscreen mode
 fullscreenBtn.onclick = () => {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen();
@@ -82,47 +150,7 @@ fullscreenBtn.onclick = () => {
   }
 };
 
-searchBtn.onclick = search;
-searchInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") search();
-});
-
-function search() {
-  const query = searchInput.value.trim();
-  if (!query) return;
-  let url = query;
-  if (!query.startsWith("http")) {
-    url = "https://www.google.com/search?q=" + encodeURIComponent(query);
-  }
-  createTab(url);
-  searchInput.value = "";
-}
-
-const tiles = [
-  { name: "Google", url: "https://google.com", icon: "https://www.google.com/favicon.ico" },
-  { name: "YouTube", url: "https://youtube.com", icon: "https://www.youtube.com/s/desktop/8f8e62b5/img/favicon_144.png" },
-  { name: "Spotify", url: "https://spotify.com", icon: "https://open.spotifycdn.com/cdn/images/favicon32.b64ecc03.png" },
-  { name: "Discord", url: "https://discord.com", icon: "https://discord.com/assets/847541504914fd33810e70a0ea73177e.ico" },
-  { name: "ChatGPT", url: "https://chat.openai.com", icon: "https://chat.openai.com/apple-touch-icon.png" },
-  { name: "GeForce Now", url: "https://play.geforcenow.com", icon: "https://www.nvidia.com/etc/designs/nvidiaGFN/clientlib-all/images/favicon.ico" },
-  { name: "GitHub", url: "https://github.com", icon: "https://github.githubassets.com/favicons/favicon-dark.svg" },
-  { name: "Twitch", url: "https://twitch.tv", icon: "https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png" },
-  { name: "ESPN", url: "https://espn.com", icon: "https://a.espncdn.com/favicon.ico" },
-  { name: "TikTok", url: "https://tiktok.com", icon: "https://sf16-website-login.neutral.ttwstatic.com/obj/ttfe/ies/superpage/favicon.ico" },
-];
-
-function renderTiles() {
-  tilesContainer.innerHTML = "";
-  tiles.forEach((tile) => {
-    const div = document.createElement("div");
-    div.className = "tile";
-    div.innerHTML = `
-      <img src="${tile.icon}" alt="${tile.name}" />
-      <p>${tile.name}</p>
-    `;
-    div.onclick = () => createTab(tile.url);
-    tilesContainer.appendChild(div);
-  });
-}
-
+// Initial setup
 renderTiles();
+home.style.display = "flex";
+tabBar.style.display = "none";
