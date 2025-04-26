@@ -2,67 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ultraviolet Browser</title>
+  <title>Proxy Browser</title>
   <link rel="stylesheet" href="style.css">
-  <script src="uv/uv.bundle.js" defer></script>
-  <script src="uv/uv.config.js" defer></script>
-  <script src="script.js" defer></script>
 </head>
 <body>
 
-<div class="topbar">
-  <button class="nav-btn" onclick="goHome()">🏠</button>
-  <div id="tabs"></div>
-  <div class="top-icons">
-    <button onclick="goHome()">🏠</button>
-    <button onclick="openSettings()">⚙️</button>
-    <button onclick="toggleFullScreen()">⛶</button>
+<div id="browserTopBar">
+  <div id="tabBar">
+    <button id="homeBtn" class="top-btn"><img src="assets/home.svg" alt="Home"></button>
+    <button id="fullscreenBtn" class="top-btn"><img src="assets/fullscreen.svg" alt="Fullscreen"></button>
+    <button id="newTabBtn" class="top-btn"><img src="assets/plus.svg" alt="New Tab"></button>
   </div>
 </div>
 
-<div class="center" id="home-screen">
-  <div class="search-area">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G" class="search-icon">
-    <input id="search-input" type="text" placeholder="Search Google..." onkeydown="if(event.key==='Enter') searchGoogle()">
-  </div>
-
-  <div class="grid">
-    <div class="tile" onclick="openSite('https://www.google.com')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google">
-    </div>
-    <div class="tile" onclick="openSite('https://www.youtube.com')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
-    </div>
-    <div class="tile" onclick="openSite('https://www.spotify.com')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" alt="Spotify">
-    </div>
-    <div class="tile" onclick="openSite('https://discord.com')">
-      <img src="https://upload.wikimedia.org/wikipedia/en/9/98/Discord_logo.svg" alt="Discord">
-    </div>
-    <div class="tile" onclick="openSite('https://chat.openai.com')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT">
-    </div>
-    <div class="tile" onclick="openSite('https://play.geforcenow.com/')">
-      <img src="https://upload.wikimedia.org/wikipedia/en/6/6e/Nvidia_logo.svg" alt="Nvidia">
-    </div>
-    <div class="tile" onclick="openSite('https://github.com')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
-    </div>
-    <div class="tile" onclick="openSite('https://www.twitch.tv')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Twitch_Logo_2019.svg" alt="Twitch">
-    </div>
-    <div class="tile" onclick="openSite('https://www.espn.com')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg" alt="ESPN">
-    </div>
-    <div class="tile" onclick="openSite('https://www.tiktok.com')">
-      <img src="https://upload.wikimedia.org/wikipedia/en/6/69/TikTok_logo.svg" alt="TikTok">
-    </div>
-  </div>
+<div id="searchBar">
+  <img src="assets/google-g.svg" id="googleIcon" alt="Google">
+  <input type="text" id="searchInput" placeholder="Search Google...">
 </div>
 
-<div id="browser-area" style="display: none;">
-  <iframe id="browser-frame" frameborder="0"></iframe>
-</div>
+<div id="tiles" class="tiles"></div>
 
+<div id="tabContent"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
