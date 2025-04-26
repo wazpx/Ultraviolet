@@ -3,38 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Proxy Space</title>
+  <title>My Proxy Browser</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="topbar">
-    <button class="nav-btn">&#8592;</button>
-    <input type="text" placeholder="Enter search or web address">
-    <div class="top-icons">
-      <button>🏠</button>
-      <button>⚙️</button>
-      <button>⛶</button>
-    </div>
+
+<div class="topbar">
+  <button class="nav-btn" onclick="goBack()">←</button>
+  <div id="tabs"></div>
+  <div class="top-icons">
+    <button onclick="goHome()">🏠</button>
+    <button onclick="openSettings()">⚙️</button>
+    <button onclick="toggleFullScreen()">⛶</button>
+  </div>
+</div>
+
+<div class="center" id="home-screen">
+  <div class="search-area">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google G" class="search-icon">
+    <input id="search-input" type="text" placeholder="Search Google..." onkeydown="if(event.key==='Enter') searchGoogle()">
   </div>
 
-  <div class="center">
-    <div class="search-area">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="search-icon">
-      <input type="text" placeholder="Search Space...">
-    </div>
-
-    <div class="grid">
-      <a href="#" class="tile google">Google</a>
-      <a href="#" class="tile youtube">YouTube</a>
-      <a href="#" class="tile spotify">Spotify</a>
-      <a href="#" class="tile discord">Discord</a>
-      <a href="#" class="tile chatgpt">ChatGPT</a>
-      <a href="#" class="tile geforce">GeForce Now</a>
-      <a href="#" class="tile github">GitHub</a>
-      <a href="#" class="tile twitch">Twitch</a>
-      <a href="#" class="tile espn">ESPN</a>
-      <a href="#" class="tile tiktok">TikTok</a>
-    </div>
+  <div class="grid">
+    <a href="#" onclick="openSite('https://www.google.com')" class="tile">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google">
+    </a>
+    <a href="#" onclick="openSite('https://www.youtube.com')" class="tile">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
+    </a>
+    <a href="#" onclick="openSite('https://www.spotify.com')" class="tile">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" alt="Spotify">
+    </a>
+    <a href="#" onclick="openSite('https://discord.com')" class="tile">
+      <img src="https://upload.wikimedia.org/wikipedia/en/9/98/Discord_logo.svg" alt="Discord">
+    </a>
+    <a href="#" onclick="openSite('https://chat.openai.com')" class="tile">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT">
+    </a>
+    <a href="#" onclick="openSite('https://play.geforcenow.com/')" class="tile">
+      <img src="https://upload.wikimedia.org/wikipedia/en/6/6e/Nvidia_logo.svg" alt="GeForce Now">
+    </a>
+    <a href="#" onclick="openSite('https://github.com')" class="tile">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
+    </a>
+    <a href="#" onclick="openSite('https://www.twitch.tv')" class="tile">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Twitch_Logo_2019.svg" alt="Twitch">
+    </a>
+    <a href="#" onclick="openSite('https://www.espn.com')" class="tile">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg" alt="ESPN">
+    </a>
+    <a href="#" onclick="openSite('https://www.tiktok.com')" class="tile">
+      <img src="https://upload.wikimedia.org/wikipedia/en/6/69/TikTok_logo.svg" alt="TikTok">
+    </a>
   </div>
+</div>
+
+<div id="browser-area" style="display: none;">
+  <iframe id="browser-frame" src="" frameborder="0"></iframe>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
