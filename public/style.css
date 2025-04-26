@@ -1,97 +1,52 @@
-body {
-  margin: 0;
-  background: linear-gradient(to bottom, #000000, #1a0033);
-  color: white;
-  font-family: 'Arial', sans-serif;
-  height: 100vh;
-  overflow-x: hidden;
+function searchGoogle() {
+  const query = document.getElementById('search-input').value;
+  openSite(`https://www.google.com/search?q=${encodeURIComponent(query)}`);
 }
 
-.topbar {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background: #111;
+function openSite(url) {
+  document.getElementById('home-screen').style.display = 'none';
+  document.getElementById('browser-area').style.display = 'block';
+  createTab(url);
 }
 
-.topbar input {
-  flex: 1;
-  margin: 0 10px;
-  padding: 8px 12px;
-  border-radius: 20px;
-  border: none;
-  background: #222;
-  color: white;
+function createTab(url) {
+  const tabs = document.getElementById('tabs');
+
+  const tab = document.createElement('div');
+  tab.className = 'tab';
+  tab.textContent = url.replace('https://', '').replace('www.', '').split('.')[0];
+  tab.onclick = () => {
+    document.getElementById('browser-frame').src = url;
+    setActiveTab(tab);
+  };
+  
+  tabs.appendChild(tab);
+  tab.click(); // auto switch to new tab
 }
 
-.top-icons button, .nav-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
+function setActiveTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
 }
 
-.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 60px;
+function goBack() {
+  const frame = document.getElementById('browser-frame');
+  frame.contentWindow.history.back();
 }
 
-.search-area {
-  display: flex;
-  align-items: center;
-  background: #222;
-  border-radius: 30px;
-  padding: 10px 20px;
-  width: 50%;
-  margin-bottom: 50px;
+function goHome() {
+  document.getElementById('browser-area').style.display = 'none';
+  document.getElementById('home-screen').style.display = 'flex';
 }
 
-.search-icon {
-  width: 24px;
-  margin-right: 10px;
+function openSettings() {
+  alert("Settings are coming soon!");
 }
 
-.search-area input {
-  border: none;
-  background: transparent;
-  color: white;
-  width: 100%;
-  font-size: 16px;
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
 }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 20px;
-  width: 80%;
-}
-
-.tile {
-  background: #222;
-  border-radius: 15px;
-  text-align: center;
-  padding: 30px 10px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-.tile:hover {
-  background: #333;
-}
-
-/* Example colors for each tile */
-.google { background: #ffffff; color: black; }
-.youtube { background: #ffffff; color: black; }
-.spotify { background: #1db954; }
-.discord { background: #5865f2; }
-.chatgpt { background: #00a67e; }
-.geforce { background: #76b900; }
-.github { background: black; }
-.twitch { background: #9146ff; }
-.espn { background: #cc0000; }
-.tiktok { background: black; }
