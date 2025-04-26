@@ -2,28 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Proxy Browser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Space</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div id="browserTopBar">
-  <div id="tabBar">
-    <button id="homeBtn" class="top-btn"><img src="assets/home.svg" alt="Home"></button>
-    <button id="fullscreenBtn" class="top-btn"><img src="assets/fullscreen.svg" alt="Fullscreen"></button>
-    <button id="newTabBtn" class="top-btn"><img src="assets/plus.svg" alt="New Tab"></button>
+  <div id="top-bar">
+    <div id="tabBar"></div>
+    <button id="newTabBtn">+</button>
+    <div id="top-buttons">
+      <button id="homeBtn">🏠</button>
+      <button id="codeBtn">🖥️</button>
+      <button id="fullscreenBtn">🖥️⛶</button>
+      <button id="tabsBtn">📑</button>
+    </div>
   </div>
-</div>
 
-<div id="searchBar">
-  <img src="assets/google-g.svg" id="googleIcon" alt="Google">
-  <input type="text" id="searchInput" placeholder="Search Google...">
-</div>
+  <div id="tabContent"></div>
 
-<div id="tiles" class="tiles"></div>
+  <div id="home" class="home-page">
+    <div class="search-container">
+      <img src="https://ssl.gstatic.com/images/branding/product/1x/googleg_32dp.png" alt="Google" class="search-logo">
+      <input type="text" id="search" placeholder="Search Google...">
+      <button id="searchBtn">🔍</button>
+    </div>
 
-<div id="tabContent"></div>
+    <div id="tiles" class="tiles">
+      <!-- Shortcut tiles will be injected here -->
+    </div>
+  </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
