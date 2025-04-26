@@ -34,6 +34,7 @@
 	},
 	"dependencies": {
 		"@mercuryworkshop/bare-mux": "^2.1.7",
+		"@tomphttp/bare-server-node": "^2.0.5",
 		"astring": "^1.9.0",
 		"events": "^3.3.0",
 		"express": "^5.1.0",
