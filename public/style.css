@@ -1,0 +1,110 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0e0e10;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #4a4aef;
+  color: white;
+  cursor: pointer;
+}
+
+.tile-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.tile {
+  background: #1f1f23;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 120px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.tile:hover {
+  transform: scale(1.05);
+}
+
+.tile img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+/* Tab Bar Styling */
+.tab-bar {
+  display: flex;
+  align-items: center;
+  background: #1a1a1d;
+  padding: 0.5rem;
+  overflow-x: auto;
+  border-bottom: 2px solid #333;
+}
+
+.tab-bar button {
+  background: #2f2f33;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-right: 0.3rem;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tab-bar button.active {
+  background: #4a4aef;
+}
+
+.tab-bar button.tab-close {
+  margin-left: 0.5rem;
+  background: transparent;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tab-content {
+  width: 100%;
+  height: 70vh;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.tab-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: none;
+}
