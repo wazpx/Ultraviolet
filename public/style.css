@@ -1,77 +1,132 @@
-body {
+* {
   margin: 0;
-  background: radial-gradient(circle at center, #2c003e, #000);
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#browserTopBar {
+body, html {
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(circle at bottom, #6a0dad, #000 70%);
+  overflow: hidden;
+  color: white;
+}
+
+#top-bar {
   display: flex;
   align-items: center;
   background: #111;
   padding: 5px;
+  gap: 5px;
 }
 
 #tabBar {
+  flex: 1;
   display: flex;
-  align-items: center;
-  width: 100%;
+  overflow-x: auto;
 }
 
-.top-btn {
+.tab-button {
+  background: #333;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background: #555;
+}
+
+.tab-close {
   background: none;
   border: none;
-  margin-right: 10px;
+  color: white;
+  margin-left: 5px;
   cursor: pointer;
-  filter: invert(1);
 }
 
-.top-btn img {
-  width: 24px;
-  height: 24px;
+#newTabBtn {
+  background: #333;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-#searchBar {
+#top-buttons button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#tabContent iframe {
+  width: 100%;
+  height: calc(100vh - 50px);
+  border: none;
+}
+
+.home-page {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.search-container {
   display: flex;
+  justify-content: center;
   align-items: center;
+  background: white;
+  width: 600px;
   margin: 20px auto;
-  background: #222;
-  width: 500px;
-  padding: 10px;
   border-radius: 25px;
+  overflow: hidden;
+  padding: 5px 10px;
 }
 
-#searchBar img {
+.search-logo {
   width: 24px;
   margin-right: 10px;
 }
 
-#searchInput {
+#search {
   flex: 1;
-  background: none;
   border: none;
   outline: none;
-  font-size: 16px;
-  color: white;
+  font-size: 18px;
+  color: black;
+}
+
+#searchBtn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .tiles {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
-  padding: 20px;
-  margin: 0 auto;
-  max-width: 1000px;
+  margin: 50px auto;
+  max-width: 800px;
 }
 
 .tile {
-  background: #1a1a1a;
-  border-radius: 20px;
+  background: #222;
   padding: 20px;
-  text-align: center;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s;
 }
 
 .tile:hover {
@@ -80,23 +135,10 @@ body {
 
 .tile img {
   width: 50px;
-  height: 50px;
-  object-fit: contain;
   margin-bottom: 10px;
 }
 
 .tile p {
-  margin: 0;
-  font-size: 14px;
-}
-
-iframe {
-  width: 100%;
-  height: calc(100vh - 160px);
-  border: none;
-  display: none;
-}
-
-.tab-button.active {
-  background: #333;
+  color: white;
+  font-size: 16px;
 }
