@@ -11,6 +11,9 @@ importers:
       '@mercuryworkshop/bare-mux':
         specifier: ^2.1.7
         version: 2.1.7
+      '@titaniumnetwork-dev/ultraviolet':
+        specifier: ^3.2.10
+        version: 3.2.10
       '@tomphttp/bare-server-node':
         specifier: ^2.0.5
         version: 2.0.5
@@ -274,6 +277,9 @@ packages:
 
   '@mercuryworkshop/bare-mux@2.1.7':
     resolution: {integrity: sha512-BUamyc7jsIFbWQVVWjVjaD+Wot77EPwolkrbP3UuIs6QeHR1RY52+IR2fq3GkRAbOOrAZNT7EgZSsupkh1NowQ==}
+
+  '@titaniumnetwork-dev/ultraviolet@3.2.10':
+    resolution: {integrity: sha512-Sf0Leb+NMEwFA8EQxCLW/wJW6TNR/EITBPKHadiq4DNOEbgXJdmIW8PKmsNkyOvAIN6o2peE86S6qxQt6ft1Ew==}
 
   '@tomphttp/bare-server-node@2.0.5':
     resolution: {integrity: sha512-j3355H1hsrsFCkFVePm7ccuUkjQq+Hgj/wnLmCQa2FzBh9B6+zRkd66kFHaYZ4PAOjSX5wHTKQuXVJrnb7GBxg==}
@@ -1145,6 +1151,16 @@ snapshots:
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
   '@mercuryworkshop/bare-mux@2.1.7': {}
+
+  '@titaniumnetwork-dev/ultraviolet@3.2.10':
+    dependencies:
+      '@mercuryworkshop/bare-mux': 2.1.7
+      astring: 1.9.0
+      events: 3.3.0
+      idb: 8.0.2
+      meriyah: 6.0.6
+      parse5: 7.3.0
+      set-cookie-parser: 2.7.1
 
   '@tomphttp/bare-server-node@2.0.5':
     dependencies:
