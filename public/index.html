@@ -7,29 +7,35 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="top-bar">
-    <div id="tabBar"></div>
-    <button id="newTabBtn">+</button>
-    <div id="top-buttons">
-      <button id="homeBtn">🏠</button>
-      <button id="codeBtn">🖥️</button>
-      <button id="fullscreenBtn">🖥️⛶</button>
-      <button id="tabsBtn">📑</button>
-    </div>
-  </div>
+  <!-- Utility Bar -->
+  <ul class="utility">
+    <li id="gointospace2">Space</li>
+    <li>
+      <input type="text" id="search" class="search-header__input" placeholder="Search Google...">
+    </li>
+    <li>
+      <span id="searchBtn" class="material-symbols-outlined utilityIcon">search</span>
+    </li>
+    <li>
+      <span id="homeBtn" class="material-symbols-outlined utilityIcon">home</span>
+    </li>
+    <li>
+      <span id="fullscreenBtn" class="material-symbols-outlined utilityIcon">fullscreen</span>
+    </li>
+    <li>
+      <span id="tabsBtn" class="material-symbols-outlined utilityIcon">folder</span>
+    </li>
+  </ul>
 
+  <!-- Tab Bar -->
+  <div id="tabBar" style="margin-top: 4rem;"></div>
+  
+  <!-- Content -->
   <div id="tabContent"></div>
 
-  <div id="home" class="home-page">
-    <div class="search-container">
-      <img src="https://ssl.gstatic.com/images/branding/product/1x/googleg_32dp.png" alt="Google" class="search-logo">
-      <input type="text" id="search" placeholder="Search Google...">
-      <button id="searchBtn">🔍</button>
-    </div>
-
-    <div id="tiles" class="tiles">
-      <!-- Shortcut tiles will be injected here -->
-    </div>
+  <!-- Home Page -->
+  <div id="home" class="shortcutsBig">
+    <!-- Tiles will be injected here -->
   </div>
 
   <script src="script.js"></script>
