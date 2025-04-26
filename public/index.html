@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GX Proxy</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Proxy Space</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="tab-bar" id="tabBar">
-    <button id="newTabBtn">+ New Tab</button>
+  <div class="topbar">
+    <button class="nav-btn">&#8592;</button>
+    <input type="text" placeholder="Enter search or web address">
+    <div class="top-icons">
+      <button>🏠</button>
+      <button>⚙️</button>
+      <button>⛶</button>
+    </div>
   </div>
 
-  <div id="tabContent" class="tab-content"></div>
+  <div class="center">
+    <div class="search-area">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="search-icon">
+      <input type="text" placeholder="Search Space...">
+    </div>
 
-  <div class="container">
-    <h1>GX Proxy</h1>
-    <input type="text" id="search" placeholder="Search or enter a URL..." />
-    <div id="tiles" class="tile-container"></div>
-    <button id="addTile">＋ Add Shortcut</button>
+    <div class="grid">
+      <a href="#" class="tile google">Google</a>
+      <a href="#" class="tile youtube">YouTube</a>
+      <a href="#" class="tile spotify">Spotify</a>
+      <a href="#" class="tile discord">Discord</a>
+      <a href="#" class="tile chatgpt">ChatGPT</a>
+      <a href="#" class="tile geforce">GeForce Now</a>
+      <a href="#" class="tile github">GitHub</a>
+      <a href="#" class="tile twitch">Twitch</a>
+      <a href="#" class="tile espn">ESPN</a>
+      <a href="#" class="tile tiktok">TikTok</a>
+    </div>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
